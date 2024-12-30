@@ -1,0 +1,61 @@
+# 忽略所有子目录中的 build 和 install 目录
+**/build/
+**/install/
+**/log/
+
+# Colcon build system
+**/.colcon/
+**/.colcon_cache/
+
+# ROS 2 workspace files
+**/.rosinstall
+**/.rosinstall.bak
+**/.rosinstall.local
+
+# Python specific
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+
+# CMake specific
+**/CMakeLists.txt.user
+**/CMakeCache.txt
+**/CMakeFiles/
+**/cmake_install.cmake
+**/Makefile
+
+# Editor specific
+**/*.swp
+**/*.swo
+**/*~
+**/*.orig
+**/*.bak
+**/*.tmp
+**/.DS_Store
+
+# CLion specific
+**/.idea/
+**/*.iml
+
+# Visual Studio Code specific
+**/.vscode/
+
+# JetBrains IDEs
+**/*.iml
+**/.idea/
+**/*.iws
+**/*.ipr
+
+# Logs and temporary files
+# **/*.log
+**/*.tmp
+**/*.temp
+**/*.bak
+**/*.swp
+**/*.swo
+**/*.swn
+
+# ROS 2 specific
+**/.ros/
+
+
