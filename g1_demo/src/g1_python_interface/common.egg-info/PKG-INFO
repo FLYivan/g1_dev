@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: common
+Version: 1.0.0
+Summary: g1 sport client for ros2 using python
+Author: luoyifan
+Author-email: luoyifan902008@126.com
+License: BSD-3-Clause
+Requires-Python: >=3.8
+Requires-Dist: numpy
+Requires-Dist: opencv-python
