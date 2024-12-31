@@ -3,15 +3,22 @@
 
 底层运控
 
-./g1_ankle_swing_example ens37
+sudo ./g1_ankle_swing_example enp0s31f6
 
 高层运控
 行走
-./g1_loco_client --network_interface=ens37 --set_velocity="0.1 0 0 1"
-下蹲
-./g1_loco_client --network_interface=ens37 --squat
+sudo ./g1_loco_client --network_interface=enp0s31f6 --set_velocity="0.5 0 0 1"
 
-./g1_loco_client --network_interface=ens37 --get_stand_height
+
+下蹲
+./g1_loco_client --network_interface=ens37 --squat 
+
+sudo ./g1_loco_client --network_interface=enp0s31f6 --get_stand_height
+
+手部
+sudo ./g1_arm5_sdk_dds_example enp0s31f6
+sudo ./g1_arm7_sdk_dds_example enp0s31f6
+
 ./g1_loco_client --network_interface=ens37 
 
 python例成
@@ -19,7 +26,7 @@ python3 ./example/go2/high_level/read_highstate.py ens37
 
 
 g1的
-python3 ./example/g1/high_level/g1_loco_client_example.py ens37
+python3 ./example/g1/high_level/g1_loco_client_example.py enp0s31f6
 move forward (id=3): 向前移动
 move lateral (id=4): 横向移动
 move rotate (id=5): 旋转移动
