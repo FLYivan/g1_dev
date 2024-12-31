@@ -1,3 +1,34 @@
+# 例程调试
+
+
+底层运控
+
+./g1_ankle_swing_example ens37
+
+高层运控
+行走
+./g1_loco_client --network_interface=ens37 --set_velocity="0.1 0 0 1"
+下蹲
+./g1_loco_client --network_interface=ens37 --squat
+
+./g1_loco_client --network_interface=ens37 --get_stand_height
+./g1_loco_client --network_interface=ens37 
+
+python例成
+python3 ./example/go2/high_level/read_highstate.py ens37
+
+
+g1的
+python3 ./example/g1/high_level/g1_loco_client_example.py ens37
+move forward (id=3): 向前移动
+move lateral (id=4): 横向移动
+move rotate (id=5): 旋转移动
+
+
+手臂控制
+
+
+
 # 深度相机驱动
 
 ros2 launch realsense2_camera rs_launch.py
