@@ -187,7 +187,10 @@ ctrl+shirt+v 预览
                 > ros2 service list
                     /robot1/D455_1/device_info
 
-
+# WIFI连接开发
+pc2内置了wifi模块，默认是关闭的，如果想使用的话
+1.用屏幕连接G1的pd输出的usb-c口，进入pc2关闭掉飞行模式（注意此步不能ssh进入pc2操作，只能连屏幕操作）
+2.打开pc2的wifi，将pc2和自己的pc连到同一个wifi，然后用自己的pc ssh进入wifi给pc2分配的ip就可以无线开发了
 
 
 
