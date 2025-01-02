@@ -1,40 +1,58 @@
 # 例程调试
 
 
-底层运控
+# 底层运控
+    ## C++
+        ### 下肢
+        sudo ./g1_ankle_swing_example enp0s31f6
 
-sudo ./g1_ankle_swing_example enp0s31f6
+        ### 手臂
+        sudo ./g1_dual_arm_example enp0s31f6
 
-高层运控
-行走
-sudo ./g1_loco_client --network_interface=enp0s31f6 --set_velocity="0.5 0 0 1"
-
-
-下蹲
-./g1_loco_client --network_interface=ens37 --squat 
-
-sudo ./g1_loco_client --network_interface=enp0s31f6 --get_stand_height
-
-手部
-sudo ./g1_arm5_sdk_dds_example enp0s31f6
-sudo ./g1_arm7_sdk_dds_example enp0s31f6
-
-./g1_loco_client --network_interface=ens37 
-
-python例成
-python3 ./example/go2/high_level/read_highstate.py ens37
+    ## Python
+        ### 下肢
+        python3 ./example/g1/low_level/g1_low_level_example.py enp0s31f6
 
 
-g1的
-python3 ./example/g1/high_level/g1_loco_client_example.py enp0s31f6
-move forward (id=3): 向前移动
-move lateral (id=4): 横向移动
-move rotate (id=5): 旋转移动
+
+# 高层运控及状态获取
+    ## C++
+        ### 下肢
+            #### 运控
+            1、行走
+            sudo ./g1_loco_client --network_interface=enp0s31f6 --set_velocity="0.5 0 0 1"
+
+            2、下蹲
+            sudo ./g1_loco_client --network_interface=enp0s31f6 --squat 
+
+            #### 状态获取
+            1、站立高度获取
+            sudo ./g1_loco_client --network_interface=enp0s31f6 --get_stand_height
+
+        ### 手臂    
+            #### 运控
+            1、手臂按既定逻辑摆动
+            sudo ./g1_arm7_sdk_dds_example enp0s31f6
+
+    ## Python
+        ### 下肢
+            #### 运控
+            python3 ./example/g1/high_level/g1_loco_client_example.py enp0s31f6
+
+                TestOption(name="damp", id=0),              阻尼态
+                TestOption(name="stand_up", id=1),          站起
+                TestOption(name="sit", id=2),               坐下
+                TestOption(name="move forward", id=3),      向前移动   
+                TestOption(name="move lateral", id=4),      横向移动
+                TestOption(name="move rotate", id=5),       旋转移动
+                TestOption(name="low stand", id=6),         站低
+                TestOption(name="high stand", id=7),        站高
+                TestOption(name="zero torque", id=8)   
+
+        
 
 
-手臂控制
-
-
+# 雷达驱动
 
 # 深度相机驱动
 
