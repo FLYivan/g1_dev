@@ -1,5 +1,12 @@
 ctrl+shirt+v 预览
-# 例程调试
+# 调试问题
+1、如果只有底层能支持ros2框架，在使用时，是否要先确保R2+L2，进入调试模式，关闭掉主运控？
+2、realsense报错
+[realsense2_camera_node-1] [INFO] [camera.camera]: Running with LibRealSense v2.55.1
+[realsense2_camera_node-1] [WARN] [camera.camera]: No RealSense devices were found!
+
+
+
 
 
 # 底层运控
@@ -8,7 +15,7 @@ ctrl+shirt+v 预览
     sudo ./g1_ankle_swing_example enp0s31f6
 
     ### 手臂
-    sudo ./g1_dual_arm_example enp0s31f6
+    sudo ./g1_dual_arm_example enp0s31f6        # 按预设轨迹移动手臂
 
 ## Python
     ### 下肢
@@ -78,7 +85,7 @@ ctrl+shirt+v 预览
 
         3、ip地址修改
         需要修改.../livox_ros_driver2/config/MID360_config.json 文件内的 "lidar_configs" "ip" 为 "192.168.123.120"
-        "host_net_info" 下的 ip 为主机 ip（G1的pc2：192.168.123.164，笔记本电脑：
+        "host_net_info" 下的 ip 为主机 ip——（G1的pc2：192.168.123.164，笔记本电脑：192.168.123.145）
 
         4、构建
         source /opt/ros/humble/setup.sh
@@ -86,10 +93,10 @@ ctrl+shirt+v 预览
 
         5、运行驱动
             5.1、通过rviz显示雷达点云
-            ros2 launch livox_ros_driver2 rviz_MID360.launch.py
+            ros2 launch livox_ros_driver2 rviz_MID360_launch.py
 
-            5.2、通过/livox/lidar、/livox/imu话题，订阅数据
-            ros2 launch livox_ros_driver2 msg_MID360.launch.py
+            5.2、通过/livox/lidar(点云话题）、/livox/imu话题，订阅数据
+            ros2 launch livox_ros_driver2 msg_MID360_launch.py
 
 # 深度相机驱动
 ## 驱动安装
@@ -128,10 +135,12 @@ ctrl+shirt+v 预览
 
 ## 图像显示
     ### 通过上位机
+        #### 安装nomachine
+        1、下载安装包
+        https://downloads.nomachine.com/download/?id=1
 
-        先在自己pc下载nomachine，
-        然后ssh进入pc2并./nomachine.sh运行脚本文件，
-        然后打开自己pc的nomachine就可以看到pc2里面的图形化界面了
+        2、然后ssh进入pc2并./nomachine.sh运行脚本文件，
+        3、然后打开自己pc的nomachine就可以看到pc2里面的图形化界面了
 
 
     ### 通过 ros 获取数据
