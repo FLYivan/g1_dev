@@ -1,11 +1,9 @@
 ctrl+shirt+v 预览
 # 调试问题
 1、如果只有底层能支持ros2框架，在使用时，是否要先确保R2+L2，进入调试模式，关闭掉主运控？
-2、realsense报错
-[realsense2_camera_node-1] [INFO] [camera.camera]: Running with LibRealSense v2.55.1
-[realsense2_camera_node-1] [WARN] [camera.camera]: No RealSense devices were found!
-
-
+2、realsense安装
+3、看下pc2中是否已安装雷达驱动 find . -name livox_sdk2
+4、怎么连wifi
 
 
 
@@ -26,7 +24,6 @@ ctrl+shirt+v 预览
         
         python3 ./example/g1/low_level/g1_low_level_example.py enp0s31f6
       
-       
 
 
 # 高层运控及状态获取
@@ -105,6 +102,7 @@ ctrl+shirt+v 预览
 
     2、安装ros功能包
     #### 命令行安装
+        在PC2中，输入如下命令
         sudo apt install ros-$ROS_DISTRO-realsense2-*
 
     #### 源码安装
@@ -142,8 +140,23 @@ ctrl+shirt+v 预览
         2、然后ssh进入pc2并./nomachine.sh运行脚本文件，
         3、然后打开自己pc的nomachine就可以看到pc2里面的图形化界面了
 
+    ### 在上位机安装驱动
+        #### 参考如下网址步骤安装
+        https://github.com/IntelRealSense/librealsense/releases
 
-    ### 通过 ros 获取数据
+    ### 在PC2中安装驱动
+        
+        1、查看linux内核： uname -mrs
+        2、查看jepack版本：
+            cat /etc/nv_tegra_release
+            sudo apt-cache show nvidia-jetpack
+            dpkg-query --show nvidia-jetpack
+
+        #### 参考如下网址步骤安装
+        https://github.com/IntelRealSense/librealsense/releases
+
+
+
         #### 单个机器人
         1、启动节点
             
