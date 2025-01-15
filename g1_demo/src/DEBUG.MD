@@ -216,7 +216,11 @@ pc2内置了wifi模块，默认是关闭的，如果想使用的话
 
 
 
+# 模仿学习
+## 环境配置
 
+    ln -s /home/flyivan/anaconda3/envs/lerobot/lib/python3.10/site-packages/nvidia/nvjitlink/lib/libnvJitLink.so.12 /home/flyivan/anaconda3/envs/lerobot/lib/python3.10/site-packages/nvidia/cusparse/lib/libnvJitLink.so.12
+    export LD_LIBRARY_PATH=/home/flyivan/anaconda3/envs/lerobot/lib/python3.10/site-packages/nvidia/cusparse/lib:/usr/local/cuda-12.1/lib64:$LD_LIBRARY_PATH
 
 
 

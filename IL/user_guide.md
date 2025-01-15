@@ -15,3 +15,12 @@
 1、复制download_dataset.sh脚本
 2、给脚本赋权限
 sudo chmod +x download_dataset.sh
+
+
+# 运行
+1、运行命令行
+python lerobot/scripts/train.py    policy=diffusion_unitree_real_g1    env=unitree_real_g1     dataset_repo_id=G1_DualArmGrasping_Dataset 
+
+2、调小batch_size到2，不然撑不住
+
+
