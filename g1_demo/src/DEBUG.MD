@@ -23,7 +23,10 @@ ctrl+shirt+v 预览
         3、切换到AB模式控制脚踝和手腕（AB模式主要用于具有并联机构的关节（如脚踝）），脚踝和手腕进行正弦摆动
         
         python3 ./example/g1/low_level/g1_low_level_example.py enp0s31f6
-      
+
+## ros2框架下
+    1、进入 /home/flyivan/unitree/unitree_ros2/example/install/unitree_ros2_example/bin/
+    2、运行 ./g1_low_level_example
 
 
 # 高层运控及状态获取
