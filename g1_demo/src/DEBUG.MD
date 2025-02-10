@@ -8,9 +8,16 @@ ctrl+shirt+v 预览
 
 
 # 底层运控
+需先关闭底层电机
+1\当 G1 处于悬挂状态下，并且处于阻尼状态，
+2\同时按下遥控器 L2 + R2 组合键，G1 进入调试模式。
+3\此时按下 L2 + A ，G1 会进入位置模式，摆出特定诊断姿势。
+192.168.123.164
+
 ## C++
+    在/home/flyivan/unitree/unitree_sdk2/build/bin/ 目录打开终端
     ### 下肢
-    sudo ./g1_ankle_swing_example enp0s31f6
+    sudo ./g1_ankle_swing_example enp0s31f6    # 扭动脚踝
 
     ### 手臂
     sudo ./g1_dual_arm_example enp0s31f6        # 按预设轨迹移动手臂
@@ -48,7 +55,10 @@ ctrl+shirt+v 预览
         1、手臂按既定逻辑摆动
         sudo ./g1_arm7_sdk_dds_example enp0s31f6
 
+1、进入锁定站立模式
+2、进入三自由度模式R2+X
 ## Python
+
     ### 下肢
         #### 运控
         python3 ./example/g1/high_level/g1_loco_client_example.py enp0s31f6
@@ -62,7 +72,14 @@ ctrl+shirt+v 预览
             TestOption(name="low stand", id=6),         站低
             TestOption(name="high stand", id=7),        站高
             TestOption(name="zero torque", id=8)   
+            TestOption(name="wave hand1", id=9)        挥手
+            TestOption(name="wave hand2", id=10)  
+            TestOption(name="shake hand", id=11)       握手
 
+    ### 手臂
+        #### 运控
+        1、手臂按既定逻辑摆动
+        python3 ./example/g1/high_level/g1_arm7_sdk_dds_example.py enp0s31f6
         
 
 
@@ -228,6 +245,44 @@ pc2内置了wifi模块，默认是关闭的，如果想使用的话
 
 
 
+# 基本动作演示
+
+测试通信192.168.123.164
+
+## 底层运控
+需先关闭底层电机
+1\当 G1 处于悬挂状态下，并且处于阻尼状态，
+2\同时按下遥控器 L2 + R2 组合键，G1 进入调试模式。
+3\此时按下 L2 + A ，G1 会进入位置模式，摆出特定诊断姿势。
 
 
+### C++
+    在/home/flyivan/unitree/unitree_sdk2/build/bin/ 目录打开终端
 
+    ### 下肢
+    sudo ./g1_ankle_swing_example enp0s31f6    # 扭动脚踝
+
+    ### 手臂
+    sudo ./g1_dual_arm_example enp0s31f6        # 按预设轨迹移动手臂
+
+## 高层控制
+1、进入锁定站立模式
+2、进入三自由度模式R2+X
+
+### Python
+
+    ### 下肢
+        #### 运控
+        python3 ./example/g1/high_level/g1_loco_client_example.py enp0s31f6
+
+            TestOption(name="stand_up", id=1),          站起
+            TestOption(name="move forward", id=3),      向前移动   
+            TestOption(name="move lateral", id=4),      横向移动
+            TestOption(name="move rotate", id=5),       旋转移动
+            TestOption(name="low stand", id=6),         站低
+            TestOption(name="high stand", id=7),        站高
+
+    ### 手臂
+        #### 运控
+        1、手臂按既定逻辑摆动
+        python3 ./example/g1/high_level/g1_arm7_sdk_dds_example.py enp0s31f6
