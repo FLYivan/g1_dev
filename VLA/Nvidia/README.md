@@ -132,6 +132,7 @@
 
         1）实例为适配So100 Lerobot的
         2）和宇树确认host和port,以及camera_index
+            查询https://support.unitree.com/home/zh/G1_developer/depth_camera_instruction页面
         3) 确认模仿学习时是否需要手腕摄像头
 
 # 十二、遥操作采集数据
