@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'g1_basic'
+package_name = 'g1_vla'
 
 setup(
     name=package_name,
@@ -15,7 +15,7 @@ setup(
     zip_safe=True,
     maintainer='FLYivan',
     maintainer_email='luoyifan902008@126.com',
-    description='G1 basic control and funtion',
+    description='VLA model used in g1',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
