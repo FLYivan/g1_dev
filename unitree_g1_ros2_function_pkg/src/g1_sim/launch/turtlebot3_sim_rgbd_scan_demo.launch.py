@@ -1,5 +1,7 @@
 # Requirements: 要求：
 #   Install Turtlebot3 packages  # 安装Turtlebot3软件包
+    # sudo apt update
+    # sudo apt install ros-<ros-distro>-turtlebot3*
 #   Modify turtlebot3_waffle SDF:  # 修改turtlebot3_waffle SDF文件：
 #     1) Edit /opt/ros/$ROS_DISTRO/share/turtlebot3_gazebo/models/turtlebot3_waffle/model.sdf  # 编辑SDF模型文件
 #     2) Add  # 添加以下内容
@@ -21,6 +23,8 @@
 #   $ ros2 launch rtabmap_demos turtlebot3_sim_rgbd_scan_demo.launch.py  # 启动仿真demo
 #
 #   Teleop:  # 遥控：
+#    设置环境变量：
+#       export TURTLEBOT3_MODEL=waffle
 #     $ ros2 run turtlebot3_teleop teleop_keyboard  # 运行键盘遥控节点
 
 from ament_index_python.packages import get_package_share_directory  # 导入包共享目录获取函数
