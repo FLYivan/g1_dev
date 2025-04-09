@@ -29,6 +29,8 @@ setup(
         'console_scripts': [ 
             'g1_p2r_cmd  = g1_cmd.g1_p2r_cmd:main',  
 
+            'vel_pub_test  = g1_cmd.vel_pub_test:main',  
+
         ],
     },
 )
