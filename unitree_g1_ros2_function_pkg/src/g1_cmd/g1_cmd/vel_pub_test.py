@@ -13,14 +13,14 @@ class VelocityPublisher(Node):
         self.publisher_ = self.create_publisher(Twist, 'cmd_vel', 10)
         
         # 设置发布频率
-        self.timer = self.create_timer(0.1, self.publish_velocity)  # 每0.1秒发布一次
+        self.timer = self.create_timer(2.0, self.publish_velocity)  # 每0.1秒发布一次
 
     def publish_velocity(self):
         # 创建Twist消息
         twist = Twist()
         
         # 设置线速度和角速度
-        twist.linear.x = 0.0  # 前进速度
+        twist.linear.x = 0.3  # 前进速度
         twist.linear.y = 0.0
         twist.linear.z = 0.0
         twist.angular.x = 0.0

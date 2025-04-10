@@ -27,7 +27,7 @@ class Python2RosCmd(Node):
         
 
         # 定义网口名称参数
-        self.declare_parameter('channel_name', "wlp0s20f3")  # 参数名为'channel_name'，需根据自身网口名调整
+        self.declare_parameter('channel_name', "enp0s31f6")  # 参数名为'channel_name'，需根据自身网口名调整
         # 获取参数值
         channel_name_value = self.get_parameter('channel_name').get_parameter_value().string_value
 
