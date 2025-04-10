@@ -28,6 +28,7 @@ setup(
     entry_points={
         'console_scripts': [ 
             'g1_p2r_cmd  = g1_cmd.g1_p2r_cmd:main',  
+            'g1_move  = g1_cmd.g1_move:main',  
 
             'vel_pub_test  = g1_cmd.vel_pub_test:main',  
 

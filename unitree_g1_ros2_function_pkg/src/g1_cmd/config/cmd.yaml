@@ -1,3 +1,7 @@
-go2_p2r_cmd:
+g1_p2r_cmd:
   ros__parameters:
-    channel_name: wlp0s20f3
+    channel_name: enp0s31f6
+
+g1_move:
+  ros__parameters:
+    channel_name: enp0s31f6
