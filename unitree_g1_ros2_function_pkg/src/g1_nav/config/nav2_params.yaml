@@ -1,70 +1,9 @@
-explore_node:
-  ros__parameters:
-    robot_base_frame: base
-    return_to_init: true
-    costmap_topic: /global_costmap/costmap
-    costmap_updates_topic: /global_costmap/costmap_updates
-    visualize: true
-    planner_frequency: 0.2
-    progress_timeout: 30.0
-    potential_scale: 5.0        # 用于对边界进行加权。较大的 potential_scale_ 值会使得距离对成本的影响更大。
-    orientation_scale: 0.5
-    gain_scale: 1.0             # 用于对边界进行加权。较大的 gain_scale_ 值会使得前沿的大小对成本的影响更大。
-                                # 较大的前沿通常意味着更多的未知区域可以被探索，因此在成本计算中，前沿越大，成本越低。
-    transform_tolerance: 0.1    # 在调用TF（变换）库的transform函数时，作为一个时间容差参数传递。以便在获取变换时能够成功匹配到合适的时间戳。
-    min_frontier_size: 0.6      # 将边界视为勘探目标的最小边界尺寸。数值单位为米。
-
-
-
-amcl:
-  ros__parameters:
-    use_sim_time: True
-    alpha1: 0.2
-    alpha2: 0.2
-    alpha3: 0.2
-    alpha4: 0.2
-    alpha5: 0.2
-    base_frame_id: "base"
-    beam_skip_distance: 0.5
-    beam_skip_error_threshold: 0.9
-    beam_skip_threshold: 0.3
-    do_beamskip: false
-    # global_frame_id: "map_slamtoolbox"              # mapfind
-    global_frame_id: "map"              # mapfind   
-    lambda_short: 0.1
-    laser_likelihood_max_dist: 2.0
-    laser_max_range: 100.0
-    laser_min_range: -1.0
-    laser_model_type: "likelihood_field"
-    max_beams: 60
-    max_particles: 2000
-    min_particles: 500
-    odom_frame_id: "odom_slamtoolbox"
-    pf_err: 0.05
-    pf_z: 0.99
-    recovery_alpha_fast: 0.0
-    recovery_alpha_slow: 0.0
-    resample_interval: 1
-    robot_model_type: "nav2_amcl::DifferentialMotionModel"
-    save_pose_rate: 0.5
-    sigma_hit: 0.2
-    tf_broadcast: true
-    transform_tolerance: 1.0
-    update_min_a: 0.2
-    update_min_d: 0.25
-    z_hit: 0.5
-    z_max: 0.05
-    z_rand: 0.5
-    z_short: 0.05
-    scan_topic: scan
-
 bt_navigator:
   ros__parameters:
     use_sim_time: True
-    # global_frame: map_slamtoolbox               # mapfind
     global_frame: map 
     robot_base_frame: base
-    odom_topic: /lio_sam_ros2/dogOdomProcess/DogOdomGlobal
+    odom_topic: /odom
     bt_loop_duration: 10
     default_server_timeout: 20
     wait_for_service_timeout: 1000
@@ -129,14 +68,14 @@ bt_navigator_navigate_to_pose_rclcpp_node:
   ros__parameters:
     use_sim_time: True
 
-controller_server:
+controller_server:                                  # 局部规划器服务器
   ros__parameters:
     use_sim_time: True
-    controller_frequency: 20.0
+    controller_frequency: 20.0                      # 分层规划
     min_x_velocity_threshold: 0.001
     min_y_velocity_threshold: 0.5
     min_theta_velocity_threshold: 0.001
-    failure_tolerance: 0.3
+    failure_tolerance: 0.4                         # TF变换容忍时间        
     progress_checker_plugin: "progress_checker"
     goal_checker_plugins: ["general_goal_checker"] # "precise_goal_checker"
     controller_plugins: ["FollowPath"]
@@ -144,8 +83,8 @@ controller_server:
     # Progress checker parameters
     progress_checker:
       plugin: "nav2_controller::SimpleProgressChecker"
-      required_movement_radius: 0.5
-      movement_time_allowance: 10.0
+      required_movement_radius: 0.5                 # 判定为有进展的最小移动距离
+      movement_time_allowance: 5.0                 # 允许的最大无进展时间(秒)
     # Goal checker parameters
     #precise_goal_checker:
     #  plugin: "nav2_controller::SimpleGoalChecker"
@@ -164,10 +103,10 @@ controller_server:
       min_vel_x: 0.0
       min_vel_y: 0.0
       max_vel_x: 0.26
-      max_vel_y: 0.0
+      max_vel_y: 0.2       
       max_vel_theta: 1.0
       min_speed_xy: 0.0
-      max_speed_xy: 0.26
+      max_speed_xy: 0.26                                          # 最大xy方向速度
       min_speed_theta: 0.0
       # Add high threshold velocity for turtlebot 3 issue.
       # https://github.com/ROBOTIS-GIT/turtlebot3_simulations/issues/75
@@ -183,7 +122,7 @@ controller_server:
       sim_time: 1.7
       linear_granularity: 0.05
       angular_granularity: 0.025
-      transform_tolerance: 0.2
+      transform_tolerance: 2.0                 # controller的transform最大容忍时间差，实际工况下1.5秒内的时间差都存在
       xy_goal_tolerance: 0.25
       trans_stopped_velocity: 0.25
       short_circuit_trajectory_evaluation: True
@@ -200,11 +139,44 @@ controller_server:
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
 
+      # # 纯追踪控制器插件
+      # plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"      
+      # # 速度/加速度限制也需要在速度平滑器中调整
+      # desired_linear_vel: 0.4                                     # 期望线速度 | 建议取值范围: 0.1-2.0 m/s; 室内环境: 0.3-0.6 m/s避免速度过快影响安全性; 室外环境: 0.5-1.5 m/s可根据地形状况适当调整; AGV场景: 0.8-2.0 m/s在确保安全的前提下提高效率
+      # lookahead_dist: 0.6                                         # 前瞻距离 | 建议取值范围: 0.3-1.5 m; 室内狭窄环境: 0.3-0.6 m减小前瞻距离提高灵活性; 室外开阔环境: 0.8-1.5 m增大前瞻距离提高路径平滑性; 高速场景: 建议设置为期望速度的1-2倍
+      # min_lookahead_dist: 0.4                                     # 最小前瞻距离 | 建议取值范围: 0.2-0.8 m; 应小于lookahead_dist,通常设置为lookahead_dist的50%-70%; 转弯较多场景偏小值以提高灵活性; 直线较多场景偏大值以提高稳定性
+      # max_lookahead_dist: 0.9                                     # 最大前瞻距离 | 建议取值范围: 0.6-2.0 m; 应大于lookahead_dist,通常设置为lookahead_dist的1.5-2倍; 室内环境: 0.6-1.2 m; 室外环境: 1.0-2.0 m
+      # lookahead_time: 2.0                                         # 前瞻时间 | 建议取值范围: 1.0-3.0 s; 低速场景: 1.5-2.0 s; 高速场景: 2.0-3.0 s
+      # transform_tolerance: 1.0                                    # 坐标变换容忍度 | 建议取值范围: 0.1-1.0 s; 实时性要求高: 0.1-0.3 s; 普通应用: 0.3-0.5 s
+      # use_velocity_scaled_lookahead_dist: true                    # 是否使用速度缩放的前瞻距离 | 建议: 一般设为true以提高适应性; 特殊场景如固定速度运动可设为false
+      # min_approach_linear_velocity: 0.1                           # 接近目标点的最小线速度 | 建议取值范围: 0.05-0.3 m/s; 精度要求高: 0.05-0.1 m/s; 一般场景: 0.1-0.2 m/s
+      # approach_velocity_scaling_dist: 0.4                         # 接近目标点时的速度缩放距离 | 建议取值范围: 0.3-1.0 m; 精确停靠: 0.3-0.5 m; 普通应用: 0.5-0.8 m
+      # use_collision_detection: true                               # 是否使用碰撞检测 | 建议: 除非特殊需求,否则应始终设为true以确保安全性
+      # max_allowed_time_to_collision_up_to_carrot: 1.0             # 到达胡萝卜点前允许的最大碰撞时间 | 建议取值范围: 0.5-2.0 s; 安全性要求高: 0.5-1.0 s; 一般场景: 1.0-1.5 s; 开阔环境: 1.5-2.0 s
+
+      # use_regulated_linear_velocity_scaling: true                 # 是否使用路径曲率的调节特性(例如在高曲率路径上减速) | 建议: 一般场景设为true以提高安全性; 高速场景可设为false以保持速度; 转弯较多场景建议开启; 直线路径为主可关闭
+      # use_cost_regulated_linear_velocity_scaling: true            # 是否使用障碍物接近度的调节特性(例如在接近障碍物时减速) | 建议: 狭窄空间/动态场景设为true; 开阔环境可设为false; 安全性要求高的场景建议开启; 追求效率场景可关闭
+
+      # regulated_linear_scaling_min_radius: 0.05                   # 调节线速度时的最小转弯半径 | 建议取值范围: 0.3-1.5 m; 室内/狭窄空间: 0.3-0.6 m; 普通场景: 0.6-1.0 m; 高速场景: 1.0-1.5 m; 转弯半径越小,转弯越灵活但稳定性降低
+      # regulated_linear_scaling_min_speed: 0.1                     # 调节线速度时的最小速度 | 建议取值范围: 0.05-0.3 m/s; 精确控制: 0.05-0.1 m/s; 一般场景: 0.1-0.2 m/s; 高速场景: 0.2-0.3 m/s
+      # allow_reversing: false                                      # 是否允许倒车 | 建议: 默认false; 需要倒车功能如停车场景设为true; 单向移动机器人设为false; 全向移动机器人通常设为false
+      # use_rotate_to_heading: false                                 # 是否使用旋转到目标朝向 | 建议: 需要精确朝向控制时设为true; 送货/服务机器人建议开启; 纯路径跟踪可设为false; 差速轮机器人建议开启
+      # rotate_to_heading_min_angle: 0.785                          # 触发旋转到目标朝向的最小角度 | 建议取值范围: 0.5-1.57 rad(约30-90度); 精确朝向: 0.5-0.7 rad; 一般场景: 0.7-1.0 rad; 宽松场景: 1.0-1.57 rad
+      # # 这只在旋转到朝向时使用(use_rotate_to_heading)
+      # # 由于某些原因rotate_to_heading_angular_vel被忽略，机器人以
+      # # max_angular_accel/10的角速度旋转(这就是为什么设置较高值的原因)
+      # max_angular_accel: 5.0                                      # 最大角加速度 | 建议取值范围: 3.0-8.0 rad/s²; 室内/精确控制: 3.0-5.0 rad/s²避免剧烈转向; 室外/开阔环境: 5.0-8.0 rad/s²可提高转向效率; 差速轮机器人偏小值; 全向轮机器人可用较大值
+      # rotate_to_heading_angular_vel: 1.8                          # 旋转到目标朝向时的角速度 | 建议取值范围: 0.8-2.5 rad/s; 精确定位: 0.8-1.2 rad/s提高准确性; 一般场景: 1.2-1.8 rad/s平衡效率和稳定性; 快速响应: 1.8-2.5 rad/s提高调整速度
+      # max_robot_pose_search_dist: 10.0                            # 搜索机器人位姿的最大距离 | 建议取值范围: 5.0-15.0 m; 室内环境: 5.0-8.0 m避免搜索范围过大; 室外环境: 8.0-15.0 m增大搜索范围; 开阔场景可适当增大; 狭窄空间建议减小
+      # use_interpolation: true                                     # 是否使用插值 | 建议: 通常设为true提高路径平滑性; 计算资源受限可设为false; 高精度导航建议开启; 快速响应场景可关闭
+
+
 local_costmap:
   local_costmap:
     ros__parameters:
       update_frequency: 5.0
       publish_frequency: 2.0
+      transform_tolerance: 1.9                         # costmap_2d_ros中的TF变化的容忍值
       global_frame: odom_slamtoolbox
       robot_base_frame: base
       use_sim_time: True
@@ -212,36 +184,51 @@ local_costmap:
       width: 3
       height: 3
       resolution: 0.05
-      # footprint: "[[-0.4, -0.15], [0.3, -0.15], [0.3, -0.07], [0.4, -0.07], [0.4, 0.07], [0.3, 0.07], [0.3, 0.15], [-0.4, 0.15]]"   # 与圆形机器人不同
-      # footprint_padding: 0.03   # 额外填充距离，确保安全
-      robot_radius: 0.2                         # 参数不要动（通常半径0.4,进门半径只能0.2）
-      plugins: ["voxel_layer", "inflation_layer"]
-      # plugins: ["static_layer", "voxel_layer", "inflation_layer"]
+      footprint: "[[-0.4, -0.15], [0.3, -0.15], [0.3, -0.07], [0.4, -0.07], [0.4, 0.07], [0.3, 0.07], [0.3, 0.15], [-0.4, 0.15]]"   # 与圆形机器人不同
+      footprint_padding: 0.05                      # 局部规划中使用较大值
+      # robot_radius: 0.4                         # 参数不要动（通常半径0.4,进门半径只能0.2）
+      # plugins: ["voxel_layer", "inflation_layer"]
+      plugins: ["static_layer", "obstacle_layer", "inflation_layer"]          # 2d建图，不使用体素层
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: True
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.25                # 参数不要动（通常半径0.4,进门半径只能0.2）
-      voxel_layer:
-        plugin: "nav2_costmap_2d::VoxelLayer"
+        cost_scaling_factor: 3.0              # 可能会影响路径太长的计算
+        inflation_radius: 0.35                # 参数不要动（通常半径0.4,进门半径只能0.25）
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        publish_voxel_map: True
-        origin_z: -0.2
-        z_resolution: 0.05
-        z_voxels: 16
-        max_obstacle_height: 2.0
-        mark_threshold: 0
         observation_sources: scan
         scan:
           topic: /scan
-          max_obstacle_height: 2.0
-          clearing: True
-          marking: True
-          data_type: "LaserScan"
-          raytrace_max_range: 90.5         # 射线追踪最大范围
-          raytrace_min_range: 0.3         # 射线追踪最小范围
-          obstacle_max_range: 90.0       # 障碍物最大范围
-          obstacle_min_range: 0.3         # 障碍物最小范围
+          max_obstacle_height: 2.0      # 障碍物最大高度(米)，应大于机器人高度，室内建议2-3米，室外可设置更高
+          clearing: True                # 是否清除探测范围内的障碍物，通常设为True以保证动态避障，特殊场景可设为False
+          marking: True                 # 是否标记探测到的障碍物，通常设为True以实现避障，特殊场景可设为False
+          data_type: "LaserScan"        # 传感器数据类型，支持"LaserScan"和"PointCloud2"，根据实际传感器选择
+          raytrace_max_range: 4.0       # 射线追踪最大范围(米)，应略大于obstacle_max_range，建议为雷达量程的0.9-1.2倍
+          raytrace_min_range: 0.3       # 射线追踪最小范围(米)，通常为0，存在近距离盲区时可适当增大，取值范围0-1米
+          obstacle_max_range: 3.5       # 障碍物探测最大范围(米)，建议为雷达量程的0.8-1.0倍，室内建议2-3米，室外可更大
+          obstacle_min_range: 0.25      # 障碍物探测最小范围(米)，通常为0，雷达存在盲区时可适当增大，取值范围0-1米，路由器问题解决 (路由器盒子距离0.25)
+
+      # voxel_layer:
+      #   plugin: "nav2_costmap_2d::VoxelLayer"
+      #   enabled: True
+      #   publish_voxel_map: True 
+      #   origin_z: 0.0                 # z轴=origin_z+z_voxels*z_resolution，为了避免control节点报错
+      #   z_resolution: 0.1
+      #   z_voxels: 16                    # 这个值不能动，过大会使膨胀层消失
+      #   max_obstacle_height: 2.0
+      #   mark_threshold: 0
+      #   observation_sources: scan
+      #   scan:
+      #     topic: /scan
+      #     max_obstacle_height: 2.0
+      #     clearing: True
+      #     marking: True
+      #     data_type: "LaserScan"
+      #     raytrace_max_range: 3.0         # 射线追踪最大范围
+      #     raytrace_min_range: 0.3        # 射线追踪最小范围 (路由器盒子距离0.3)
+      #     obstacle_max_range: 2.5         # 障碍物最大范围
+      #     obstacle_min_range: 0.25         # 障碍物最小范围  (路由器盒子距离0.3)
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         enabled: True
@@ -253,14 +240,13 @@ global_costmap:
     ros__parameters:
       update_frequency: 1.0
       publish_frequency: 1.0
-      # global_frame: map_slamtoolbox               # mapfind
       global_frame: map
       robot_base_frame: base
       use_sim_time: True
-      robot_radius: 0.2                           # 参数不要动
+      # robot_radius: 0.4                           # 参数不要动
       resolution: 0.05
-      # footprint: "[[-0.4, -0.15], [0.3, -0.15], [0.3, -0.07], [0.4, -0.07], [0.4, 0.07], [0.3, 0.07], [0.3, 0.15], [-0.4, 0.15]]"  # 与圆形机器人不同
-      # footprint_padding: 0.03   # 额外填充距离，确保安全
+      footprint: "[[-0.4, -0.15], [0.3, -0.15], [0.3, -0.07], [0.4, -0.07], [0.4, 0.07], [0.3, 0.07], [0.3, 0.15], [-0.4, 0.15]]"  # 与圆形机器人不同
+      footprint_padding: 0.04           # 额外填充距离，确保安全
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
       obstacle_layer:
@@ -269,14 +255,14 @@ global_costmap:
         observation_sources: scan
         scan:
           topic: /scan
-          max_obstacle_height: 2.0
-          clearing: True
-          marking: True
-          data_type: "LaserScan"
-          raytrace_max_range: 90.5         # 射线追踪最大范围
-          raytrace_min_range: 0.3         # 射线追踪最小范围
-          obstacle_max_range: 90.0         # 检测到障碍物最大范围（这个参数是否跟地图障碍物标记有关）
-          obstacle_min_range: 0.3         # 障碍物最小范围，小于这个范围的被忽略，路由器问题解决
+          max_obstacle_height: 2.0      # 障碍物最大高度(米)，应大于机器人高度，室内建议2-3米，室外可设置更高
+          clearing: True                # 是否清除探测范围内的障碍物，通常设为True以保证动态避障，特殊场景可设为False
+          marking: True                 # 是否标记探测到的障碍物，通常设为True以实现避障，特殊场景可设为False
+          data_type: "LaserScan"        # 传感器数据类型，支持"LaserScan"和"PointCloud2"，根据实际传感器选择
+          raytrace_max_range: 4.0       # 室外可以设置较大，用于构建完整环境地图，射线追踪最大范围(米)，应略大于obstacle_max_range，建议为雷达量程的0.9-1.2倍
+          raytrace_min_range: 0.3       # 射线追踪最小范围(米)，通常为0，存在近距离盲区时可适当增大，取值范围0-1米
+          obstacle_max_range: 3.5       # 室外可以设置较大，用于构建完整环境地图，障碍物探测最大范围(米)，建议为雷达量程的0.8-1.0倍，室内建议2-3米，室外可更大
+          obstacle_min_range: 0.25      # 障碍物探测最小范围(米)，通常为0，雷达存在盲区时可适当增大，取值范围0-1米，路由器问题解决 (路由器盒子距离0.25)
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         enabled: True
@@ -284,19 +270,19 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: True                         # 启用膨胀层
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.25                # 参数不要动
+        cost_scaling_factor: 3.0             # 可能会影响路径太长的计算
+        inflation_radius: 0.35                 # 参数不要动(通常半径0.4,进门半径只能0.25)
       always_send_full_costmap: True
 
-map_server:
-  ros__parameters:
-    use_sim_time: True
-    # Overridden in launch by the "map" launch configuration or provided default value.
-    # To use in yaml, remove the default "map" value in the tb3_simulation_launch.py file & provide full path to map below.
-    yaml_filename: ""
-    # topic_name: "map_amcl"            # 由于amcl订阅的map话题名写死为/map，所以这里不能调整参数  
-    # frame_id: "map_slamtoolbox"         # acml模式下，map_server发布的map话题坐标id要和acml订阅的一致 mapfind
-    frame_id: "map" 
+# map_server:
+#   ros__parameters:
+#     use_sim_time: True
+#     # Overridden in launch by the "map" launch configuration or provided default value.
+#     # To use in yaml, remove the default "map" value in the tb3_simulation_launch.py file & provide full path to map below.
+#     yaml_filename: ""
+#     # topic_name: "map_amcl"            # 由于amcl订阅的map话题名写死为/map，所以这里不能调整参数  
+#     # frame_id: "map_slamtoolbox"         # acml模式下，map_server发布的map话题坐标id要和acml订阅的一致 mapfind
+#     frame_id: "map" 
 
 map_saver:
   ros__parameters:
@@ -306,46 +292,45 @@ map_saver:
     occupied_thresh_default: 0.65
     map_subscribe_transient_local: True
 
-planner_server:
+planner_server:                              # 全局规划器服务器
   ros__parameters:
     expected_planner_frequency: 20.0
     use_sim_time: True
     planner_plugins: ["GridBased"]
     GridBased:
-      plugin: "nav2_navfn_planner/NavfnPlanner"
-      tolerance: 0.2
-      use_astar: false
-      allow_unknown: true
+      # plugin: "nav2_navfn_planner/NavfnPlanner"
+      # tolerance: 0.2                        # 允许到达目标点附近的距离容差
+      # use_astar: false
+      # allow_unknown: true
 
-      # plugin: "nav2_smac_planner/SmacPlannerHybrid"
-      # downsample_costmap: false           # 是否对地图进行下采样
-      # downsampling_factor: 1              # 代价地图层分辨率的倍数（例如，在5cm的代价地图上设置为2将变为10cm）
-      # tolerance: 0.25                     # 如果无法找到精确的目标，作为有效容忍度终点的距离-目标启发式代价（距离）
-      # allow_unknown: true                 # 允许在未知空间中行驶
-      # max_iterations: 1000000             # 在失败（如果无法到达）之前搜索的最大总迭代次数，设置为-1以禁用
-      # max_on_approach_iterations: 1000    # 在达到容忍度范围内后继续尝试找到精确解决方案的最大迭代次数
-      # max_planning_time: 5.0              # 规划器规划和平滑的最大时间（秒）
-      # motion_model_for_search: "REEDS_SHEPP"    # Hybrid-A* Dubin, Redds-Shepp
-      # angle_quantization_bins: 72         # 搜索的角度量化箱数量
-      # analytic_expansion_ratio: 3.5       # 在搜索最终接近时尝试分析扩展的比例
-      # analytic_expansion_max_length: 3.0  # 对于Hybrid/Lattice节点：分析扩展被认为有效的最大长度，以防止不安全的捷径
-      # minimum_turning_radius: 0.40        # 路径/车辆的最小转弯半径（米）
-      # reverse_penalty: 2.0                # 如果运动是倒车，应用的惩罚，必须 >= 1
-      # change_penalty: 0.0                 # 如果运动改变方向（左到右），应用的惩罚，必须 >= 0
-      # non_straight_penalty: 1.2           # 如果运动不是直线，应用的惩罚，必须 >= 1
-      # cost_penalty: 2.0                   # 在将障碍物地图动态规划距离扩展启发式添加到障碍地图时应用的惩罚。这会驱动机器人更靠近通道的中心。合理的值在1.3 - 3.5之间。
-      # retrospective_penalty: 0.015
-      # lookup_table_size: 20.0             # 缓存的dubin/reeds-sheep距离窗口的大小，以米为单位。
-      # cache_obstacle_heuristic: false     # 在同一目标位置的后续重新规划之间缓存障碍物地图动态规划距离扩展启发式。如果代价地图基本上是静态的，这会显著加快重新规划性能（40倍）。
-      # viz_expansions: false               # 对于Hybrid节点：是否在/expansions话题上发布扩展作为姿态数组（方向没有意义）。警告：计算和显示都很重，仅用于调试，因为它会降低性能。
-      # smooth_path: True                   # 如果为true，则对路径进行简单快速的平滑后处理
-      # smoother:
-      #   max_iterations: 1000
-      #   w_smooth: 0.3
-      #   w_data: 0.2
-      #   tolerance: 1.0e-10
-      #   do_refinement: true
-      #   refinement_num: 2
+      plugin: "nav2_smac_planner/SmacPlannerHybrid"
+      downsample_costmap: false           # 是否对代价地图进行降采样,复杂环境建议false,简单环境可设为true以提高性能
+      downsampling_factor: 1              # 代价地图降采样因子,仅当downsample_costmap为true时有效,取值范围1-4,值越大精度越低但速度越快
+      tolerance: 0.35                      # 到达目标点的距离容差(米),取值范围0.1-1.0,开阔环境可设大些,狭窄环境需设小些
+      allow_unknown: true                 # 是否允许规划穿过未知区域,未知区域多时建议true,已知环境可设为false
+      max_iterations: 1000000             # 路径搜索最大迭代次数,取值范围10000-2000000,复杂环境需要更大的迭代次数
+      max_planning_time: 20.0             # 路径规划最大允许时间(秒),取值范围1.0-30.0,根据实时性要求设置
+      motion_model_for_search: "REEDS_SHEPP"    # 运动模型类型,DUBIN适合前进受限的机器人,REEDS_SHEPP适合可后退的机器人
+      angle_quantization_bins: 64         # 角度量化区间数,取值16-72,值越大转向越平滑但计算量越大
+      analytic_expansion_ratio: 2.5       # 解析扩展比例,取值2.0-5.0,开阔环境可设大些以加快规划,狭窄环境设小些以提高精度
+      analytic_expansion_max_length: 1.5  # 最大解析扩展长度(米),取值0.5-5.0,空旷处可设大些,狭窄处设小些
+      minimum_turning_radius: 0.05       # 最小转弯半径(米),根据机器人运动学约束设置,轮式机器人一般0.3-1.0,全向机器人可接近0
+      reverse_penalty: 2.0                # 倒车代价权重,取值>=1.0,不允许倒车设很大,允许倒车可设1.0-3.0
+      change_penalty: 0.0                 # 改变方向的惩罚系数,取值>=0,动态环境设小些,静态环境可设大些提高路径平滑度
+      non_straight_penalty: 1.2           # 非直线运动惩罚系数,取值>=1.0,追求更直的路径设大些,追求更灵活设小些
+      cost_penalty: 2.0                   # 代价地图惩罚系数,取值1.3-3.5,值越大离障碍物越远,但可能导致路径过长
+      retrospective_penalty: 0.015        # 回溯惩罚系数,取值0.01-0.1,值越大越不易产生回头路,但可能导致找不到路径
+      lookup_table_size: 20.0             # 查找表大小(米),取值10.0-30.0,值越大预计算越多内存占用越大,但规划更快
+      cache_obstacle_heuristic: false     # 是否缓存启发式值,静态环境设true可提高性能,动态环境需设false
+      smooth_path: True                   # 是否对规划路径进行平滑处理,一般建议开启以获得更平滑的路径
+
+      smoother:                           # 路径平滑器参数配置
+        max_iterations: 1000              # 平滑最大迭代次数,取值500-2000,值越大越平滑但耗时越长
+        w_smooth: 0.3                     # 平滑权重,取值0.1-0.4,值越大越平滑但可能偏离原始路径
+        w_data: 0.2                       # 数据保持权重,取值0.1-0.3,值越大越接近原始路径
+        tolerance: 1.0e-10                # 平滑收敛阈值,取值1e-10到1e-5,值越小越精确但耗时越长
+        do_refinement: true               # 是否进行路径细化,开启可获得更高质量的路径,但会增加计算时间
+
 
 smoother_server:
   ros__parameters:
@@ -359,28 +344,28 @@ smoother_server:
 
 behavior_server:
   ros__parameters:
-    costmap_topic: local_costmap/costmap_raw
-    footprint_topic: local_costmap/published_footprint
-    cycle_frequency: 10.0
-    behavior_plugins: ["spin", "backup", "drive_on_heading", "assisted_teleop", "wait"]
+    costmap_topic: local_costmap/costmap_raw              # 代价地图话题名称
+    footprint_topic: local_costmap/published_footprint    # 机器人轮廓话题名称
+    cycle_frequency: 10.0                                 # 行为服务器循环频率(Hz)
+    behavior_plugins: ["spin", "backup", "drive_on_heading", "assisted_teleop", "wait"]    # 启用的行为插件列表
     spin:
-      plugin: "nav2_behaviors/Spin"
+      plugin: "nav2_behaviors/Spin"                       # 原地旋转行为插件
     backup:
-      plugin: "nav2_behaviors/BackUp"
+      plugin: "nav2_behaviors/BackUp"                     # 后退行为插件
     drive_on_heading:
-      plugin: "nav2_behaviors/DriveOnHeading"
+      plugin: "nav2_behaviors/DriveOnHeading"             # 沿指定方向行驶插件
     wait:
-      plugin: "nav2_behaviors/Wait"
+      plugin: "nav2_behaviors/Wait"                       # 等待行为插件
     assisted_teleop:
-      plugin: "nav2_behaviors/AssistedTeleop"
-    global_frame: odom_slamtoolbox
-    robot_base_frame: base
-    transform_tolerance: 0.1
-    use_sim_time: true
-    simulate_ahead_time: 2.0
-    max_rotational_vel: 1.0
-    min_rotational_vel: 0.4
-    rotational_acc_lim: 3.2
+      plugin: "nav2_behaviors/AssistedTeleop"             # 辅助遥控行为插件
+    global_frame: odom_slamtoolbox                        # 全局坐标系名称
+    robot_base_frame: base                                # 机器人基座坐标系名称
+    transform_tolerance: 0.1                              # 坐标变换容差(秒)
+    use_sim_time: true                                    # 是否使用仿真时间
+    simulate_ahead_time: 2.0                              # 前向模拟时间(秒)
+    max_rotational_vel: 1.0                               # 最大旋转速度(rad/s)
+    min_rotational_vel: 0.4                               # 最小旋转速度(rad/s)
+    rotational_acc_lim: 3.2                               # 旋转加速度限制(rad/s^2)
 
 robot_state_publisher:
   ros__parameters:
@@ -403,11 +388,12 @@ velocity_smoother:
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
-    max_velocity: [0.26, 0.0, 1.0]
-    min_velocity: [-0.26, 0.0, -1.0]
+    # feedback: "CLOSED_LOOP"
+    max_velocity: [0.26, 0.2, 1.0]
+    min_velocity: [-0.26, 0.2, -1.0]
     max_accel: [2.5, 0.0, 3.2]
     max_decel: [-2.5, 0.0, -3.2]
-    odom_topic: "lio_sam_ros2/dogOdomProcess/DogOdomGlobal"
+    odom_topic: "odom"
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]
     velocity_timeout: 1.0
