@@ -3,9 +3,9 @@
 <package format="3">
   <name>g1_slam_algorithm</name>
   <version>0.0.0</version>
-  <description>slam method can be used in g1</description>
+  <description>slam in g1</description>
   <maintainer email="luoyifan902008@126.com">FLYivan</maintainer>
-  <license>Apache-2.0</license>
+  <license>TODO: License declaration</license>
   <depend>tf2_ros</depend>
   <depend>tf_transformations </depend>
 
@@ -14,7 +14,6 @@
   <depend>nav_msgs</depend>  
   <depend>sensor_msgs</depend>
   <depend>std_msgs</depend>
-  <depend>subprocess</depend>
   
 
   <depend>numpy</depend>
@@ -22,12 +21,8 @@
   <depend>unitree_go</depend>
   <depend>unitree_api</depend>
   <depend>unitree_interfaces</depend>
-  <depend>custom_interface</depend> 
-  <depend>go2_sport</depend>
+  <depend>unitree_hg</depend>
 
-  <exec_depend>python3-scipy</exec_depend>
-  <exec_depend>sshpass</exec_depend>
-  
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>

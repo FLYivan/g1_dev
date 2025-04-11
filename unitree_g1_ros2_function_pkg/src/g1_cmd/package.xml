@@ -14,7 +14,6 @@
   <depend>nav_msgs</depend>  
   <depend>sensor_msgs</depend>
   <depend>std_msgs</depend>
-  <depend>subprocess</depend>
   
 
   <depend>numpy</depend>
@@ -22,8 +21,7 @@
   <depend>unitree_go</depend>
   <depend>unitree_api</depend>
   <depend>unitree_interfaces</depend>
-  <depend>custom_interface</depend> 
-  <depend>go2_sport</depend>
+  <depend>unitree_hg</depend>
 
   <exec_depend>python3-scipy</exec_depend>
   <exec_depend>sshpass</exec_depend>

@@ -20,8 +20,8 @@ setup(
     zip_safe=True,
     maintainer='FLYivan',
     maintainer_email='luoyifan902008@126.com',
-    description='slam method can be used in g1',
-    license='Apache-2.0',
+    description='slam in g1',
+    license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
@@ -29,8 +29,6 @@ setup(
 
             'motion_to_tf  = g1_slam_algorithm.motion_to_tf:main',  
             'frame_id_modifier  = g1_slam_algorithm.frame_id_modifier:main',  
-
-
         ],
     },
 )
