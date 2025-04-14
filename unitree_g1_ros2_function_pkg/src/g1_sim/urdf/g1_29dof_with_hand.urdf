@@ -19,7 +19,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/pelvis.STL"/>
+        <mesh filename="package://g1_sim/meshes/pelvis.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -35,7 +35,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/pelvis_contour_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/pelvis_contour_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -44,7 +44,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/pelvis_contour_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/pelvis_contour_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -63,7 +63,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hip_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hip_pitch_link.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -72,7 +72,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hip_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hip_pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -92,7 +92,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hip_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hip_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -101,7 +101,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hip_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hip_roll_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -121,7 +121,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hip_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hip_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -130,7 +130,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hip_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hip_yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -150,7 +150,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_knee_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_knee_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -159,7 +159,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_knee_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_knee_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -179,7 +179,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_ankle_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_ankle_pitch_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -188,7 +188,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_ankle_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_ankle_pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -208,7 +208,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_ankle_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_ankle_roll_link.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -255,7 +255,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hip_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hip_pitch_link.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -264,7 +264,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hip_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hip_pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -284,7 +284,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hip_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hip_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -293,7 +293,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hip_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hip_roll_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -313,7 +313,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hip_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hip_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -322,7 +322,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hip_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hip_yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -342,7 +342,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_knee_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_knee_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -351,7 +351,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_knee_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_knee_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -371,7 +371,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_ankle_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_ankle_pitch_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -380,7 +380,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_ankle_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_ankle_pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -400,7 +400,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_ankle_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_ankle_roll_link.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -449,7 +449,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/waist_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/waist_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -472,7 +472,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/waist_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/waist_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -495,7 +495,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/torso_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/torso_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -504,7 +504,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/torso_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/torso_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -531,7 +531,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/logo_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/logo_link.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -540,7 +540,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/logo_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/logo_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -555,7 +555,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/head_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/head_link.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -564,7 +564,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/head_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/head_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -584,7 +584,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/waist_support_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/waist_support_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -593,7 +593,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/waist_support_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/waist_support_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -644,7 +644,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_shoulder_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_shoulder_pitch_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -673,7 +673,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_shoulder_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_shoulder_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -702,7 +702,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_shoulder_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_shoulder_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -711,7 +711,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_shoulder_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_shoulder_yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -731,7 +731,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_elbow_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_elbow_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -740,7 +740,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_elbow_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_elbow_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -767,7 +767,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_wrist_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_wrist_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -776,7 +776,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_wrist_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_wrist_roll_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -796,7 +796,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_wrist_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_wrist_pitch_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -805,7 +805,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_wrist_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_wrist_pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -825,7 +825,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_wrist_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_wrist_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -834,7 +834,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_wrist_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_wrist_yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -852,7 +852,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_palm_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_palm_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -861,7 +861,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_palm_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_palm_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -881,7 +881,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_thumb_0_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_thumb_0_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -890,7 +890,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_thumb_0_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_thumb_0_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -910,7 +910,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_thumb_1_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_thumb_1_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -939,7 +939,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_thumb_2_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_thumb_2_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -948,7 +948,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_thumb_2_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_thumb_2_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -968,7 +968,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_middle_0_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_middle_0_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -977,7 +977,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_middle_0_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_middle_0_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -997,7 +997,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_middle_1_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_middle_1_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1006,7 +1006,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_middle_1_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_middle_1_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1026,7 +1026,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_index_0_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_index_0_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1035,7 +1035,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_index_0_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_index_0_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1055,7 +1055,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_index_1_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_index_1_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1064,7 +1064,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/left_hand_index_1_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/left_hand_index_1_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1077,7 +1077,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_shoulder_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_shoulder_pitch_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1106,7 +1106,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_shoulder_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_shoulder_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1135,7 +1135,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_shoulder_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_shoulder_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1144,7 +1144,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_shoulder_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_shoulder_yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1164,7 +1164,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_elbow_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_elbow_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1173,7 +1173,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_elbow_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_elbow_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1200,7 +1200,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_wrist_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_wrist_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1209,7 +1209,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_wrist_roll_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_wrist_roll_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1229,7 +1229,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_wrist_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_wrist_pitch_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1238,7 +1238,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_wrist_pitch_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_wrist_pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1258,7 +1258,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_wrist_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_wrist_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1267,7 +1267,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_wrist_yaw_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_wrist_yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1285,7 +1285,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_palm_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_palm_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1294,7 +1294,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_palm_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_palm_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1314,7 +1314,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_thumb_0_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_thumb_0_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1323,7 +1323,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_thumb_0_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_thumb_0_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1343,7 +1343,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_thumb_1_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_thumb_1_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1372,7 +1372,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_thumb_2_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_thumb_2_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1381,7 +1381,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_thumb_2_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_thumb_2_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1401,7 +1401,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_middle_0_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_middle_0_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1410,7 +1410,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_middle_0_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_middle_0_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1430,7 +1430,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_middle_1_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_middle_1_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1439,7 +1439,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_middle_1_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_middle_1_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1459,7 +1459,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_index_0_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_index_0_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1468,7 +1468,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_index_0_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_index_0_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1488,7 +1488,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_index_1_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_index_1_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1497,7 +1497,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/right_hand_index_1_link.STL"/>
+        <mesh filename="package://g1_sim/meshes/right_hand_index_1_link.STL"/>
       </geometry>
     </collision>
   </link>
