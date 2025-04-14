@@ -286,3 +286,4 @@ pc2内置了wifi模块，默认是关闭的，如果想使用的话
         #### 运控
         1、手臂按既定逻辑摆动
         python3 ./example/g1/high_level/g1_arm7_sdk_dds_example.py enp0s31f6
+

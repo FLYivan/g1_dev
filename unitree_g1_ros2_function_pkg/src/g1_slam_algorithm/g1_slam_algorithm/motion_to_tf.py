@@ -154,6 +154,29 @@ class DynamicTFPublisher(Node):
         self.odom.twist.twist.angular.z = self.vthz                  # 设置角速度z
 
 
+        """
+        静态tf生成
+        """
+        # 使用雷达的时间戳
+        # self.static_transform_stamped.header.stamp.sec = sec
+        # self.static_transform_stamped.header.stamp.nanosec = nanosec
+
+        self.static_transform_stamped.header.stamp = self.get_clock().now().to_msg()    # 以上位机时间戳为准
+
+        self.static_transform_stamped.header.frame_id = 'base'  # 目标frame_id
+        self.static_transform_stamped.child_frame_id = 'mid360_link'  # 原始frame_id rslidar
+
+
+        self.static_transform_stamped.transform.translation.x = 0.171
+        self.static_transform_stamped.transform.translation.y = 0.0
+        self.static_transform_stamped.transform.translation.z = 0.0908
+
+        q = R.from_euler('z', np.radians(90)).as_quat()                 # 雷达坐标系默认方向和本体实际坐标系默认方向相差90度,故需修正
+        self.static_transform_stamped.transform.rotation.x = q[0]
+        self.static_transform_stamped.transform.rotation.y = q[1]
+        self.static_transform_stamped.transform.rotation.z = q[2]
+        self.static_transform_stamped.transform.rotation.w = q[3]
+
 
         """
         动态tf关系生成
@@ -185,7 +208,11 @@ class DynamicTFPublisher(Node):
         
         # 发布里程计消息
         self.odom_pub.publish(self.odom) 
-        # self.get_logger().info(f'{BLUE}里程计时间戳: {self.transform.header.stamp}{RESET}')                           
+        # self.get_logger().info(f'{BLUE}里程计时间戳: {self.transform.header.stamp}{RESET}')    
+        
+        # 发布静态变换
+        self.static_broadcaster.sendTransform(self.static_transform_stamped)
+        # self.get_logger().info(f'{RED}静态TF时间戳: {self.transform.header.stamp}{RESET}')                       
 
 
         # 广播坐标变换信息

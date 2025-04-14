@@ -36,7 +36,7 @@ def generate_launch_description():
             executable='frame_id_modifier',             
             name='frame_id_modifier',
             output='screen',
-            parameters=[{'new_frame_id': 'g1_lidar'}]        # 修改后frameid
+            parameters=[{'new_frame_id': 'mid360_link'}]        # 修改后frameid
         )
 
     # 延迟启动 node_frame
