@@ -73,7 +73,7 @@ def generate_launch_description():
     # g1的URDF发布launch文件
     start_urdf_launch_file = launch.actions.IncludeLaunchDescription(
         PythonLaunchDescriptionSource([get_package_share_directory(
-            'go2_sim'), '/launch', '/g1_urdf2tf.launch.py']),
+            'g1_sim'), '/launch', '/g1_urdf2tf.launch.py']),
     )	
 
     # RViz2节点

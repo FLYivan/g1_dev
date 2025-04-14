@@ -215,20 +215,40 @@
 
 
 # 四、导航建图方案
-    1、先在原仓库测试
-            ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 
-            ros2 launch g1_sim turtlebot3_sim_rgbd_scan_demo.launch.py
-            
 
-            ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
+## 构建
+    colcon build --packages-select rtabmap_demos
 
-            ros2 launch turtlebot3_gazebo spawn_turtlebot3.launch.py
+## 测试节点
+### 1、2d lidar+RGB-D slam + nav2
+        RGB-D: 
+            ros2 launch rtabmap_demos turtlebot3_sim_rgbd_demo.launch.py
+            ros2 launch rtabmap_demos turtlebot3_sim_rgbd_demo.launch.py world:=dqn_stage2
+        RGB-D+scan:
+            ros2 launch rtabmap_demos turtlebot3_sim_rgbd_scan_demo.launch.py
 
-            ros2 run turtlebot3_teleop teleop_keyboard
+### 2、室内2d激光和RGB-D融合slam
 
-            [ERROR] [gzserver-1]: process has died [pid 193163, exit code 255, cmd 'gzserver /opt/ros/humble/share/turtlebot3_gazebo/worlds/turtlebot3_house.world -slibgazebo_ros_init.so -slibgazebo_ros_factory.so -slibgazebo_ros_force_system.so'].
-            [ERROR] [spawn_entity.py-4]: Service /spawn_entity unavailable. Was Gazebo started with GazeboRosFactory?
+    SLAM:
+        ros2 launch rtabmap_demos robot_mapping_demo.launch.py rviz:=true rtabmap_viz:=true
+
+    Rosbag:
+        ros2 bag play demo_mapping.db3 --clock
+
+
+
+
+        ros2 run turtlebot3_teleop teleop_keyboard
+
+    3、地图保存
+
+        地图默认保存路径【~/.ros/rtabmap.db】
+        打开方式
+            1、rtabmap
+            2、载入文件
+    
+    rtabmap.launch.py文件有很多参数可以自定义
 
 # 五、在go2上测试
 
@@ -263,13 +283,10 @@
 
 
 # 硬件驱动
-    ros2 launch livox_ros_driver2 msg_MID360_launch.py
+
     ros2 launch livox_ros_driver2 rviz_MID360_launch.py
     更改frame_id ——mid360_link
 
-    # 问题
-    1、ros2 launch livox_ros_driver2 msg_MID360_launch.py发布出有效话题
-    2、点云数据是180度倒置的
 
     ros2 launch realsense2_camera rs_launch.py pointcloud.enable:=true enable_gyro:=true enable_accel:=true
 
