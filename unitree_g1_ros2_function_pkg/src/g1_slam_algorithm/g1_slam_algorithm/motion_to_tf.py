@@ -211,7 +211,7 @@ class DynamicTFPublisher(Node):
         # self.get_logger().info(f'{BLUE}里程计时间戳: {self.transform.header.stamp}{RESET}')    
         
         # 发布静态变换
-        self.static_broadcaster.sendTransform(self.static_transform_stamped)
+        # self.static_broadcaster.sendTransform(self.static_transform_stamped)
         # self.get_logger().info(f'{RED}静态TF时间戳: {self.transform.header.stamp}{RESET}')                       
 
 

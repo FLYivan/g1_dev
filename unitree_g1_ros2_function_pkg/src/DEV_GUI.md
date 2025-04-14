@@ -264,6 +264,7 @@
 
 # 硬件驱动
     ros2 launch livox_ros_driver2 msg_MID360_launch.py
+    更改frame_id
 
     ros2 launch realsense2_camera rs_launch.py pointcloud.enable:=true enable_gyro:=true enable_accel:=true
 
