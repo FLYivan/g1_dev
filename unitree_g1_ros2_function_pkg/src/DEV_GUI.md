@@ -264,7 +264,12 @@
 
 # 硬件驱动
     ros2 launch livox_ros_driver2 msg_MID360_launch.py
-    更改frame_id
+    ros2 launch livox_ros_driver2 rviz_MID360_launch.py
+    更改frame_id ——mid360_link
+
+    # 问题
+    1、ros2 launch livox_ros_driver2 msg_MID360_launch.py发布出有效话题
+    2、点云数据是180度倒置的
 
     ros2 launch realsense2_camera rs_launch.py pointcloud.enable:=true enable_gyro:=true enable_accel:=true
 

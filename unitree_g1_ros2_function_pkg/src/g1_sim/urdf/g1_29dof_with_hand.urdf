@@ -10,7 +10,7 @@
     <child link="pelvis"/>
   </joint> -->
 
-  <link name="pelvis">
+  <link name="base">
     <inertial>
       <origin xyz="0 0 -0.07605" rpy="0 0 0"/>
       <mass value="3.813"/>
@@ -49,7 +49,7 @@
     </collision>
   </link>
   <joint name="pelvis_contour_joint" type="fixed">
-    <parent link="pelvis"/>
+    <parent link="base"/>
     <child link="pelvis_contour_link"/>
   </joint>
 
@@ -78,7 +78,7 @@
   </link>
   <joint name="left_hip_pitch_joint" type="revolute">
     <origin xyz="0 0.064452 -0.1027" rpy="0 0 0"/>
-    <parent link="pelvis"/>
+    <parent link="base"/>
     <child link="left_hip_pitch_link"/>
     <axis xyz="0 1 0"/>
     <limit lower="-2.5307" upper="2.8798" effort="88" velocity="32"/>
@@ -270,7 +270,7 @@
   </link>
   <joint name="right_hip_pitch_joint" type="revolute">
     <origin xyz="0 -0.064452 -0.1027" rpy="0 0 0"/>
-    <parent link="pelvis"/>
+    <parent link="base"/>
     <child link="right_hip_pitch_link"/>
     <axis xyz="0 1 0"/>
     <limit lower="-2.5307" upper="2.8798" effort="88" velocity="32"/>
@@ -458,7 +458,7 @@
   </link>
   <joint name="waist_yaw_joint" type="revolute">
     <origin xyz="0 0 0" rpy="0 0 0"/>
-    <parent link="pelvis"/>
+    <parent link="base"/>
     <child link="waist_yaw_link"/>
     <axis xyz="0 0 1"/>
     <limit lower="-2.618" upper="2.618" effort="88" velocity="32"/>
@@ -614,7 +614,7 @@
   <link name="imu_in_pelvis"></link>
   <joint name="imu_in_pelvis_joint" type="fixed">
     <origin xyz="0.04525 0 -0.08339" rpy="0 0 0"/>
-    <parent link="pelvis"/>
+    <parent link="base"/>
     <child link="imu_in_pelvis"/>
   </joint>
 

@@ -42,6 +42,14 @@ class DynamicTFPublisher(Node):
         self.quat_y = 0.0
         self.quat_z = 0.0
 
+        # 初始变换：从坐标系A到坐标系B
+        self.initial_position_A = None
+        self.initial_orientation_A = None
+
+        # 坐标系B的初始位置和旋转
+        self.initial_position_B = np.array([0, 0, 0])
+        self.initial_orientation_B = R.from_quat([0.0, 0.0, 0.0, 1.0])
+
         # 自定义QoS配置
         qos_profile = QoSProfile(
             reliability=QoSReliabilityPolicy.RELIABLE,     # 可靠性策略： 确保消息被传递，如果失败会尝试重传
@@ -56,6 +64,10 @@ class DynamicTFPublisher(Node):
         # 创建一个发布器，用于发布Odometry消息
         self.odom_pub = self.create_publisher(Odometry, 'odom', qos_profile)    
         self.odom = Odometry()                               # 创建一个Odometry消息对象
+
+        # 创建静态变换广播器
+        self.static_broadcaster = StaticTransformBroadcaster(self)
+        self.static_transform_stamped = TransformStamped()
 
 
         # 创建动态 TF 缓存和广播器

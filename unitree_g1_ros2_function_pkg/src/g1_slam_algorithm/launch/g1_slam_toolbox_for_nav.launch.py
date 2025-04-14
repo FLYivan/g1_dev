@@ -22,7 +22,7 @@ def generate_launch_description():
     rviz_file = os.path.join(
         get_package_share_directory('g1_slam_algorithm'),
         'rviz',
-        'dog_slam_simp.rviz'
+        'g1_slam.rviz'
     )
 
 

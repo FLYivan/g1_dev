@@ -48,5 +48,5 @@ def generate_launch_description():
         action_declare_arg_mode_path, 
         joint_state_publisher_node,
         robot_state_publisher_node,
-        rviz_node,
+        # rviz_node,
     ])

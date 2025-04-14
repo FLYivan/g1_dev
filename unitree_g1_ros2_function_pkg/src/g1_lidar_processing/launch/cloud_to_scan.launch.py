@@ -26,11 +26,11 @@ def generate_launch_description():
             }],
             remappings=[
                 ('cloud_in', '/livox/lidar'),           # 禾赛sdk独立驱动xt16雷达     
-                ('scan', '/scan'),
+                ('scan', '/scan_old'),
             ]
         )
 
-    # 激光frame_id修改节点
+    # 激光frame_id修改+时间戳上位机同步节点
     node_frame =  Node(
             package='g1_slam_algorithm',                      
             executable='frame_id_modifier',             
@@ -45,7 +45,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         node_p2l,
-        # delayed_node,
+        delayed_node,       
     ])
 
 
