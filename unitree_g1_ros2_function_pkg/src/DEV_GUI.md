@@ -227,6 +227,9 @@
             ros2 launch rtabmap_demos turtlebot3_sim_rgbd_demo.launch.py world:=dqn_stage2
         RGB-D+scan:
             ros2 launch rtabmap_demos turtlebot3_sim_rgbd_scan_demo.launch.py
+        
+        操作：
+            ros2 run turtlebot3_teleop teleop_keyboard
 
 ### 2、室内2d激光和RGB-D融合slam
 
@@ -235,18 +238,40 @@
 
     Rosbag:
         ros2 bag play demo_mapping.db3 --clock
+### 3、find-object
+
+    SLAM:
+        ros2 launch rtabmap_demos find_object_demo.launch.py
+
+    Rosbag:
+        ros2 bag play demo_find_object.db3 --clock
+
+### 4、3d激光点云+RGB-D slam融合+nav2
+
+    ros2 launch rtabmap_demos husky_sim_scan3d_assemble_demo.launch.py robot_ns:=a200_0000
+
+    启动后，先按gazebo左下角暂停
+
+    ros2 launch clearpath_nav2_demos nav2.launch.py setup_path:=/home/flyivan/dog_robot/lib/rtabmap_ros_ws/src/rtabmap_ros/rtabmap_demos/data/clearpath/ use_sim_time:=true
+        
+### 5、3d激光点云+RGB-D slam+nav2
+
+    ros2 launch rtabmap_demos husky_sim_scan3d_demo.launch.py robot_ns:=a200_0000
+
+    ros2 launch clearpath_nav2_demos nav2.launch.py setup_path:=/home/flyivan/dog_robot/lib/rtabmap_ros_ws/src/rtabmap_ros/rtabmap_demos/data/clearpath/ use_sim_time:=true
+
+### 6、isaac sim中，nav2+RGB-D slam
+    先要安装issac sim
+
+    ros2 launch rtabmap_demos isaac_vslam.launch.py stereo:=false vo:=rtabmap
 
 
+## 地图保存
 
-
-        ros2 run turtlebot3_teleop teleop_keyboard
-
-    3、地图保存
-
-        地图默认保存路径【~/.ros/rtabmap.db】
-        打开方式
-            1、rtabmap
-            2、载入文件
+    地图默认保存路径【~/.ros/rtabmap.db】
+    打开方式
+        1、rtabmap
+        2、载入文件
     
     rtabmap.launch.py文件有很多参数可以自定义
 
