@@ -177,7 +177,7 @@ local_costmap:
       update_frequency: 5.0
       publish_frequency: 2.0
       transform_tolerance: 1.9                         # costmap_2d_ros中的TF变化的容忍值
-      global_frame: odom_slamtoolbox
+      global_frame: odom
       robot_base_frame: base
       use_sim_time: True
       rolling_window: true
@@ -358,7 +358,7 @@ behavior_server:
       plugin: "nav2_behaviors/Wait"                       # 等待行为插件
     assisted_teleop:
       plugin: "nav2_behaviors/AssistedTeleop"             # 辅助遥控行为插件
-    global_frame: odom_slamtoolbox                        # 全局坐标系名称
+    global_frame: odom                                    # 全局坐标系名称
     robot_base_frame: base                                # 机器人基座坐标系名称
     transform_tolerance: 0.1                              # 坐标变换容差(秒)
     use_sim_time: true                                    # 是否使用仿真时间

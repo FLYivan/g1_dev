@@ -141,7 +141,7 @@ class DynamicTFPublisher(Node):
         
         self.odom.header.stamp = self.get_clock().now().to_msg()    # 以上位机时间戳为准
 
-        self.odom.header.frame_id = 'odom_slamtoolbox'                   # 设置消息的坐标系ID
+        self.odom.header.frame_id = 'odom'                   # 设置消息的坐标系ID
         self.odom.child_frame_id = 'base'               # 设置子坐标系ID
 
         # 设置位置
@@ -198,7 +198,7 @@ class DynamicTFPublisher(Node):
         self.transform.header.stamp = self.get_clock().now().to_msg()    # 以上位机时间戳为准
 
         # 设置坐标系
-        self.transform.header.frame_id = 'odom_slamtoolbox'                          # 设置一个坐标变换的源坐标系
+        self.transform.header.frame_id = 'odom'                                      # 设置一个坐标变换的源坐标系
         self.transform.child_frame_id = 'base'                                       # 设置一个坐标变换的目标坐标系
 
         # 设置转化参数

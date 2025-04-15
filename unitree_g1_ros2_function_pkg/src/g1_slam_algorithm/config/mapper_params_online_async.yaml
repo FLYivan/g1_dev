@@ -10,7 +10,7 @@ slam_toolbox:
     ceres_loss_function: None
 
     # ROS Parameters(只有这部分参数可以动)
-    odom_frame: odom_slamtoolbox
+    odom_frame: odom
     # map_frame: map_slamtoolbox        
     map_frame: map  
     base_frame: base
