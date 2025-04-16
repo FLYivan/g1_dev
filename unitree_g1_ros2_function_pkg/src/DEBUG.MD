@@ -159,10 +159,11 @@ ctrl+shirt+v 预览
 
         2、然后ssh进入pc2并./nomachine.sh运行脚本文件，
         3、然后打开自己pc的nomachine就可以看到pc2里面的图形化界面了
+        4、realsense-viewer 命令启动
 
     ### 在上位机安装驱动
         #### 参考如下网址步骤安装
-        https://github.com/IntelRealSense/librealsense/releases
+        https://github.com/IntelRealSense/librealsense/release
 
     ### 在PC2中安装驱动
         

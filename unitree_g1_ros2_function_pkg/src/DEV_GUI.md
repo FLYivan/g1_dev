@@ -234,15 +234,64 @@
 ### PC2上
     sudo apt install ros-$ROS_DISTRO-rtabmap-ros
 
+    sudo chmod u+w 
+
+    更新源：
+        # 写入新的配置（移除 fuerte 相关配置）
+sudo bash -c 'cat > /etc/ros/rosdep/sources.list.d/20-default.list << EOF
+# os-specific listings first
+yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml osx
+
+# generic
+yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
+yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
+yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
+gbpdistro https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml fuerte
+
+# newer distributions (Groovy, Hydro, ...) must not be listed anymore, they are being fetched from the rosdistro index.yaml instead
+EOF'
+        
+        # 添加 GitHub 相关域名的解析
+            sudo bash -c 'cat >> /etc/hosts << EOF
+            185.199.108.133 raw.githubusercontent.com
+            185.199.109.133 raw.githubusercontent.com
+            185.199.110.133 raw.githubusercontent.com
+            185.199.111.133 raw.githubusercontent.com
+            EOF'
+
+        # 清理缓存
+            sudo rm -rf /etc/ros/rosdep/sources.cache/
+            rm -rf ~/.ros/rosdep/sources.cache/
+
+        # 初始化 rosdep
+        sudo rosdep init
+
+        # 更新 rosdep
+        rosdep update
+
     测试可用性
     1、视觉slam
+
+        ros2 launch realsense2_camera rs_launch.py enable_gyro:=true enable_accel:=true unite_imu_method:=1 enable_sync:=true align_depth.enable:=true
+
         ros2 launch rtabmap_examples realsense_d435i_color.launch.py
 
+        colcon build --packages-select rtabmap_examples
+
+
     2、激光slam
+
+        1、远程拷贝
+            scp /home/flyivan/dog_robot/lib/rtabmap_ros_ws/src/rtabmap_ros/rtabmap_examples/launch/lidar3d.launch.py unitree@192.168.123.164:/home/unitree/human_robot/lib/rtabmap_ws/src/rtabmap_ros/rtabmap_examples/launch
+
+
+        ros2 launch livox_ros_driver2 rviz_MID360_launch.py
+
+
         ros2 launch rtabmap_examples lidar3d.launch.py lidar_topic:=/livox/lidar frame_id:=mid360_link imu_topic:=/livox/imu 
 
     git clone git@github.com:FLYivan/rtabmap_ros.git
-    git clone git@github.com:FLYivan/unitree_g1_ros2_demo.git
+    git clone https://github.com/FLYivan/unitree_g1_ros2_demo.git
 
 
 ## 构建
