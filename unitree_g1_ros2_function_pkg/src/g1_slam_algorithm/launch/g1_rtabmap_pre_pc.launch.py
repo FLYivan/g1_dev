@@ -50,7 +50,7 @@ def generate_launch_description():
   
         start_lidar_launch_file,        # 启动激光frame_id修改launch文件
         start_urdf_launch_file,
-        start_realsense_launch_file,
+        # start_realsense_launch_file,
 
 
         start_cus_tftree_node,

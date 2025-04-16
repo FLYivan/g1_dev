@@ -84,7 +84,8 @@ def generate_launch_description():
             executable='rgbd_sync',           # 运行rgbd_sync可执行文件
             output='screen',                  # 输出信息到屏幕
             parameters=[parameters,           # 使用上面定义的参数
-              {'rgb_image_transport':'compressed',        # RGB图像使用压缩传输
+              {
+               'rgb_image_transport':'compressed',        # RGB图像使用压缩传输
                'depth_image_transport':'compressedDepth', # 深度图像使用压缩传输
                'approx_sync_max_interval': 0.02}],       # 最大同步时间间隔为0.02秒
             remappings=remappings),          # 使用上面定义的话题重映射

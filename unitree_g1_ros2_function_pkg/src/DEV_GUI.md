@@ -269,30 +269,49 @@ EOF'
         # 更新 rosdep
         rosdep update
 
-    测试可用性
+## 测试可用性
     1、视觉slam
-
-        ros2 launch realsense2_camera rs_launch.py enable_gyro:=true enable_accel:=true unite_imu_method:=1 enable_sync:=true align_depth.enable:=true
-
-        ros2 launch rtabmap_examples realsense_d435i_color.launch.py
-
         colcon build --packages-select rtabmap_examples
 
+        1）在pc2上
+
+            ros2 launch realsense2_camera rs_launch.py enable_gyro:=true enable_accel:=true unite_imu_method:=1 enable_sync:=true align_depth.enable:=true
+
+            ros2 launch rtabmap_examples realsense_d435i_color.launch.py
+
+        
+        2）在上位机上
+
+            ros2 launch realsense2_camera rs_launch.py \
+                camera_namespace:="" \
+                enable_gyro:=true \
+                enable_accel:=true \
+                unite_imu_method:=1 \
+                align_depth.enable:=true \
+                enable_sync:=true \
+                rgb_camera.profile:=640x360x30
+
+            ros2 launch rtabmap_examples realsense_d435i_color.launch.py
 
     2、激光slam
 
-        1、远程拷贝
-            scp /home/flyivan/dog_robot/lib/rtabmap_ros_ws/src/rtabmap_ros/rtabmap_examples/launch/lidar3d.launch.py unitree@192.168.123.164:/home/unitree/human_robot/lib/rtabmap_ws/src/rtabmap_ros/rtabmap_examples/launch
-
-
         ros2 launch livox_ros_driver2 rviz_MID360_launch.py
-
 
         ros2 launch rtabmap_examples lidar3d.launch.py lidar_topic:=/livox/lidar frame_id:=mid360_link imu_topic:=/livox/imu 
 
-    git clone git@github.com:FLYivan/rtabmap_ros.git
-    git clone https://github.com/FLYivan/unitree_g1_ros2_demo.git
 
+    3、室内2d激光和RGB-D融合slam
+
+        激光驱动：
+            ros2 launch livox_ros_driver2 rviz_MID360_launch.py
+
+        双目驱动：
+            ros2 launch realsense2_camera rs_launch.py \
+                align_depth.enable:=true \
+                enable_sync:=true \
+                rgb_camera.profile:=640x360x30
+
+        
 
 ## 构建
     colcon build --packages-select rtabmap_demos

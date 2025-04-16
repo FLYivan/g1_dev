@@ -30,6 +30,8 @@ setup(
             'motion_to_tf  = g1_slam_algorithm.motion_to_tf:main',  
             'frame_id_modifier  = g1_slam_algorithm.frame_id_modifier:main',  
             'trajectory_visualizer  = g1_slam_algorithm.trajectory_visualizer:main', 
+
+            'sensor_sync_node  = g1_slam_algorithm.sensor_sync_node:main', 
         ],
     },
 )
