@@ -230,6 +230,20 @@
 
 # 四、导航建图方案
 
+## 下载安装
+### PC2上
+    sudo apt install ros-$ROS_DISTRO-rtabmap-ros
+
+    测试可用性
+    1、视觉slam
+        ros2 launch rtabmap_examples realsense_d435i_color.launch.py
+
+    2、激光slam
+        ros2 launch rtabmap_examples lidar3d.launch.py lidar_topic:=/livox/lidar frame_id:=mid360_link imu_topic:=/livox/imu 
+
+    git clone git@github.com:FLYivan/rtabmap_ros.git
+    git clone git@github.com:FLYivan/unitree_g1_ros2_demo.git
+
 
 ## 构建
     colcon build --packages-select rtabmap_demos
