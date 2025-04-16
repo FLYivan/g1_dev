@@ -127,6 +127,20 @@
         ros2 launch realsense2_camera rs_launch.py
 
         > ros2 topic list
+            /camera/camera/color/camera_info
+            /camera/camera/color/image_raw
+            /camera/camera/color/image_raw/compressed
+            /camera/camera/color/image_raw/compressedDepth
+            /camera/camera/color/image_raw/theora
+            /camera/camera/color/metadata
+            /camera/camera/depth/camera_info
+            /camera/camera/depth/image_rect_raw
+            /camera/camera/depth/image_rect_raw/compressed
+            /camera/camera/depth/image_rect_raw/compressedDepth
+            /camera/camera/depth/image_rect_raw/theora
+            /camera/camera/depth/metadata
+            /camera/camera/extrinsics/depth_to_color
+
             /camera/color/camera_info
             /camera/color/image_raw
             /camera/color/metadata
@@ -261,7 +275,7 @@
     ros2 launch clearpath_nav2_demos nav2.launch.py setup_path:=/home/flyivan/dog_robot/lib/rtabmap_ros_ws/src/rtabmap_ros/rtabmap_demos/data/clearpath/ use_sim_time:=true
 
 ### 6、isaac sim中，nav2+RGB-D slam
-    先要安装issac sim
+    先要安装issac sim。笔记本内存不够
 
     ros2 launch rtabmap_demos isaac_vslam.launch.py stereo:=false vo:=rtabmap
 
@@ -309,23 +323,35 @@
 
 # 硬件驱动
 
-    ros2 launch livox_ros_driver2 rviz_MID360_launch.py
-    更改frame_id ——mid360_link
+    pc2:
+        ros2 launch livox_ros_driver2 rviz_MID360_launch.py
 
 
-    ros2 launch realsense2_camera rs_launch.py pointcloud.enable:=true enable_gyro:=true enable_accel:=true
+    上位机：
+        ros2 launch realsense2_camera rs_launch.py 
+        frame_id: camera_color_optical_frame
 
 # 构建节点
 
-colcon build --packages-select g1_sim
-colcon build --packages-select g1_lidar_processing
-colcon build --packages-select g1_slam_algorithm
+    colcon build --packages-select g1_sim
+    colcon build --packages-select g1_lidar_processing
+    colcon build --packages-select g1_slam_algorithm
 
 
 # 建图
-ros2 launch g1_slam_algorithm g1_slam_toolbox.launch.py 
-ros2 launch g1_lidar_processing cloud_to_scan.launch.py
-ros2 run g1_slam_algorithm motion_to_tf 
+    slam-toolbox:
+        ros2 launch g1_slam_algorithm g1_slam_toolbox.launch.py 
+        ros2 launch g1_lidar_processing cloud_to_scan.launch.py
+        ros2 run g1_slam_algorithm motion_to_tf 
+
+    rtabmap:
+        ros2 launch g1_slam_algorithm g1_rtabmap_pre_pc.launch.py
+        ros2 launch g1_slam_algorithm robot_mapping_demo_g1.launch.py
+
+
+    报错：
+        [rgbd_sync-1] [ERROR] [1744708214.025348285] [rgbd_sync]: SubscriberPlugin::subscribeImpl with five arguments has not been overridden
+
 
 
 # nav2导航

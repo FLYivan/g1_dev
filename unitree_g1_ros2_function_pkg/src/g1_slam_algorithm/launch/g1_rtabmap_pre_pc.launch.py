@@ -38,12 +38,19 @@ def generate_launch_description():
     )	
 
 
+    # g1的realsense发布launch文件
+    start_realsense_launch_file = launch.actions.IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([get_package_share_directory(
+            'realsense2_camera'), '/launch', '/rs_launch.py']),
+    )	
+
 
     return launch.LaunchDescription([
  
   
         start_lidar_launch_file,        # 启动激光frame_id修改launch文件
         start_urdf_launch_file,
+        start_realsense_launch_file,
 
 
         start_cus_tftree_node,

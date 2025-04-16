@@ -54,11 +54,15 @@ def generate_launch_description():
     }
     
     remappings=[
-         ('rgb/image',       '/camera/color/image_raw'),
-         ('depth/image',     '/camera/depth/image_rect_raw'),
-         ('rgb/camera_info', '/camera/color/camera_info'),
+         ('rgb/image',       '/camera/camera/color/image_raw/compressed'),
+         ('depth/image',     '/camera/camera/depth/image_rect_raw/compressedDepth'),
+         ('rgb/camera_info', '/camera/camera/color/camera_info'),
          ('scan',            '/scan')]
     
+            # /camera/color/camera_info
+            # /camera/color/image_raw
+            # /camera/depth/image_rect_raw
+
     config_rviz = os.path.join(
         get_package_share_directory('rtabmap_demos'), 'config', 'demo_robot_mapping.rviz'
     )
