@@ -299,7 +299,7 @@ EOF'
 
         ros2 launch livox_ros_driver2 rviz_MID360_launch.py
 
-        ros2 launch rtabmap_examples lidar3d.launch.py lidar_topic:=/livox/lidar frame_id:=mid360_link imu_topic:=/livox/imu 
+        ros2 launch rtabmap_examples lidar3d.launch.py lidar_topic:=/livox/lidar frame_id:=mid360_link 
 
 
     3、室内2d激光和RGB-D融合slam
