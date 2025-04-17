@@ -270,12 +270,13 @@ EOF'
         rosdep update
 
 ## 测试可用性
-    1、视觉slam
-        colcon build --packages-select rtabmap_examples
+    colcon build --packages-select rtabmap_examples
+    colcon build --packages-select rtabmap_util
 
+    1、视觉slam
         1）在pc2上
 
-            ros2 launch realsense2_camera rs_launch.py enable_gyro:=true enable_accel:=true unite_imu_method:=1 enable_sync:=true align_depth.enable:=true
+            ros2 launch realsense2_camera rs_launch.py enable_gyro:=true enable_accel:=true unite_imu_method:=2 enable_sync:=true align_depth.enable:=true
 
             ros2 launch rtabmap_examples realsense_d435i_color.launch.py
 
@@ -292,6 +293,7 @@ EOF'
                 rgb_camera.profile:=640x360x30
 
             ros2 launch rtabmap_examples realsense_d435i_color.launch.py
+
 
     2、激光slam
 
@@ -311,6 +313,12 @@ EOF'
                 enable_sync:=true \
                 rgb_camera.profile:=640x360x30
 
+        tf和单线激光驱动：
+            ros2 launch g1_slam_algorithm g1_rtabmap_pre_pc.launch.py
+
+
+            
+        ros2 launch g1_slam_algorithm robot_mapping_demo_g1.launch.py
         
 
 ## 构建

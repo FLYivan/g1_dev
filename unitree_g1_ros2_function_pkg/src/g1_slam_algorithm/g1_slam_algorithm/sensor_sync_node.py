@@ -19,6 +19,7 @@ class SensorSyncNode(Node):
         self.camera_info_sub = Subscriber(self, CameraInfo, 'rgb/camera_info')
         self.scan_sub = Subscriber(self, LaserScan, 'scan')
         
+        
         # 设置时间同步器，允许0.1秒的时间误差
         self.ts = TimeSynchronizer(
             [self.rgb_sub, self.depth_sub, self.camera_info_sub, self.scan_sub],

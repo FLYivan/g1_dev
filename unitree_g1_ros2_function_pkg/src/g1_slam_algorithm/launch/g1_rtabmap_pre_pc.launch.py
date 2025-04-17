@@ -38,12 +38,6 @@ def generate_launch_description():
     )	
 
 
-    # g1的realsense发布launch文件
-    start_realsense_launch_file = launch.actions.IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([get_package_share_directory(
-            'realsense2_camera'), '/launch', '/rs_launch.py']),
-    )	
-
 
     return launch.LaunchDescription([
  
