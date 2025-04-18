@@ -50,8 +50,8 @@ def generate_launch_description():
         'clearpath_viz')
     pkg_rtabmap_demos = get_package_share_directory(
         'rtabmap_demos')
-    # pkg_clearpath_nav2_demos = get_package_share_directory(
-    #     'clearpath_nav2_demos')
+    pkg_clearpath_nav2_demos = get_package_share_directory(
+        'clearpath_nav2_demos')
     
     # Paths
     sim_launch = PathJoinSubstitution(
@@ -60,8 +60,8 @@ def generate_launch_description():
         [pkg_clearpath_viz, 'launch', 'view_navigation.launch.py'])
     rtabmap_launch = PathJoinSubstitution(
         [pkg_rtabmap_demos, 'launch', 'husky', 'husky_slam3d.launch.py'])
-    # nav2_launch = PathJoinSubstitution(
-    #     [pkg_clearpath_nav2_demos, 'launch', 'nav2.launch.py'])
+    nav2_launch = PathJoinSubstitution(
+        [pkg_clearpath_nav2_demos, 'launch', 'nav2.launch.py'])
 
     sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([sim_launch]),
