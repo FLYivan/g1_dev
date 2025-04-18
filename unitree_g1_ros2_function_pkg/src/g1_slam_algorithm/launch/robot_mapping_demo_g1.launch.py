@@ -54,17 +54,19 @@ def generate_launch_description():
     }
     
     remappings=[
-         ('rgb/image',       '/camera/camera/color/image_raw/compressed'),
-         ('depth/image',     '/camera/camera/depth/image_rect_raw/compressedDepth'),
-         ('rgb/camera_info', '/camera/camera/color/camera_info'),
+         ('rgb/image',       '/camera/color/image_raw'),
+         ('depth/image',     '/camera/depth/image_rect_raw'),
+         ('rgb/camera_info', '/camera/color/camera_info'),
+
+        #  ('rgb/image',       '/camera/camera/color/image_raw/compressed'),
+        #  ('depth/image',     '/camera/camera/depth/image_rect_raw/compressedDepth'),
+        #  ('rgb/camera_info', '/camera/camera/color/camera_info'),
+
          ('scan',            '/scan')]
-    
-            # /camera/color/camera_info
-            # /camera/color/image_raw
-            # /camera/depth/image_rect_raw
+
 
     config_rviz = os.path.join(
-        get_package_share_directory('rtabmap_demos'), 'config', 'demo_robot_mapping.rviz'
+        get_package_share_directory('g1_slam_algorithm'), 'rviz', 'demo_robot_mapping.rviz'
     )
 
     return LaunchDescription([
@@ -85,8 +87,8 @@ def generate_launch_description():
             output='screen',                  # 输出信息到屏幕
             parameters=[parameters,           # 使用上面定义的参数
               {
-               'rgb_image_transport':'compressed',        # RGB图像使用压缩传输
-               'depth_image_transport':'compressedDepth', # 深度图像使用压缩传输
+            #    'rgb_image_transport':'compressed',        # RGB图像使用压缩传输
+            #    'depth_image_transport':'compressedDepth', # 深度图像使用压缩传输
                'approx_sync_max_interval': 0.02}],       # 最大同步时间间隔为0.02秒
             remappings=remappings),          # 使用上面定义的话题重映射
         # SLAM mode:

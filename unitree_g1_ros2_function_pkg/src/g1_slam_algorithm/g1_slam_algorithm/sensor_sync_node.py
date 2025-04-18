@@ -19,9 +19,12 @@ class SensorSyncNode(Node):
         self.depth_sub = Subscriber(self, Image, '/camera/depth/image_rect_raw')
         self.depth_compressed_sub = Subscriber(self, CompressedImage, 'depth/image/compressed')
         self.camera_info_sub = Subscriber(self, CameraInfo, '/camera/color/camera_info')
-        self.scan_sub = Subscriber(self, LaserScan, '/scan_old')
+        # self.scan_sub = Subscriber(self, LaserScan, '/scan_old')
         self.pointcloud_sub = Subscriber(self, PointCloud2, '/livox/lidar')
         self.imu_sub = Subscriber(self, Imu, '/livox/imu')
+
+
+        self.rgb_sub_2 = self.create_subscription(Image,'/camera/color/image_raw',self.listener_callback, 10)
         
         # 设置时间同步器，严格时间同步
         self.ts = TimeSynchronizer(
@@ -30,7 +33,7 @@ class SensorSyncNode(Node):
              self.rgb_compressed_sub,
              self.depth_compressed_sub,
              self.camera_info_sub, 
-             self.scan_sub, 
+            #  self.scan_sub, 
              self.pointcloud_sub, 
              self.imu_sub,
              
@@ -65,7 +68,7 @@ class SensorSyncNode(Node):
         self.depth_pub = self.create_publisher(Image, 'sync/depth/image', 10)
         self.depth_compressed_pub = self.create_publisher(CompressedImage, 'sync/depth/image/compressed', 10)
         self.camera_info_pub = self.create_publisher(CameraInfo, 'sync/rgb/camera_info', 10)
-        self.scan_pub = self.create_publisher(LaserScan, 'sync/scan', 10)
+        # self.scan_pub = self.create_publisher(LaserScan, 'sync/scan', 10)
         self.pointcloud_pub = self.create_publisher(PointCloud2, 'sync/points', 10)
         self.imu_pub = self.create_publisher(Imu, 'sync/imu', 10)
         
@@ -86,7 +89,7 @@ class SensorSyncNode(Node):
             depth_msg.header.stamp = current_time
             depth_compressed_msg.header.stamp = current_time
             camera_info_msg.header.stamp = current_time
-            scan_msg.header.stamp = current_time
+            # scan_msg.header.stamp = current_time
             pointcloud_msg.header.stamp = current_time
             imu_msg.header.stamp = current_time
             
@@ -96,7 +99,7 @@ class SensorSyncNode(Node):
             self.depth_pub.publish(depth_msg)
             self.depth_compressed_pub.publish(depth_compressed_msg)
             self.camera_info_pub.publish(camera_info_msg)
-            self.scan_pub.publish(scan_msg)
+            # self.scan_pub.publish(scan_msg)
             self.pointcloud_pub.publish(pointcloud_msg)
             self.imu_pub.publish(imu_msg)
             

@@ -308,6 +308,8 @@ EOF'
             ros2 launch livox_ros_driver2 rviz_MID360_launch.py
 
         双目驱动：
+            ros2 launch realsense2_camera rs_launch.py enable_sync:=true
+
             ros2 launch realsense2_camera rs_launch.py \
                 align_depth.enable:=true \
                 enable_sync:=true \
@@ -316,9 +318,10 @@ EOF'
         tf和单线激光驱动：
             ros2 launch g1_slam_algorithm g1_rtabmap_pre_pc.launch.py
 
+            ros2 run g1_slam_algorithm sensor_sync_node
 
-            
-        ros2 launch g1_slam_algorithm robot_mapping_demo_g1.launch.py
+
+        ros2 launch g1_slam_algorithm robot_mapping_demo_g1.launch.py rviz:=true rtabmap_viz:=true
         
 
 ## 构建
